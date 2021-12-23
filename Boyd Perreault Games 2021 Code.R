@@ -1,6 +1,16 @@
 # Code for Boyd, R. and C. Perreault, 2022. Evolution of social learning with payoff and content bias, Games. 
 #Last Modified: December 23rd 2021. 
 
+##################################################################################################
+####---General structure of the code (see article for more complete description of the code)---###
+##################################################################################################
+#Each generation, the following happens:
+# 1. The state of the environment switches randomly
+# 2. The individuals get a social cue, an environmental cue, and a payoff cue:
+# 3. Individuals combine those three cues using the optimal decision rule analytically derived above to chose a behavior.
+# 4. Viability selection occurs. The baseline fitness is W. Individuals with the favored behavior, given the current state of the environment, get a fitness benefit d. Reproduction is based on relative fitness, which is calculated by dividing individual fitness by the maximum fitness in the population. The fitness of individuals relative to the maximum fitness in the population is used as a vector of weights in the sample function in the R language base package in order to sample the individuals that reproduce and transmit their alleles to the next generation.
+# 5. Mutations in G and g alleles in the next generation occur with probability M. The values of the mutant alleles are drawn from a normal distribution with mean equal the allele of the parent and standard deviation msd. G and g are unlinked and mutate independently.
+
 ######################
 ###---Parameters---###
 ######################
@@ -123,15 +133,15 @@ for (n_models in n){
           }
           tick<- tick+1}
         
-        #########################
-        ###---Store Results---###
-        #########################resu
-        results[sim,1]<-n_models
-        results[sim,2]<-mu_env_cue
-        results[sim,3]<-prob_env_change
-        results[sim,4]<-variance_payoff_cue
-        results[sim,5]<-median(G)
-        results[sim,6]<-median(g)
-        results[sim,7]<-mean(tape_average_fitness)
-        sim<-sim+1
-      }}}} 
+#########################
+###---Store Results---###
+#########################
+results[sim,1]<-n_models
+results[sim,2]<-mu_env_cue
+results[sim,3]<-prob_env_change
+results[sim,4]<-variance_payoff_cue
+results[sim,5]<-median(G)
+results[sim,6]<-median(g)
+results[sim,7]<-mean(tape_average_fitness)
+sim<-sim+1
+}}}} 
